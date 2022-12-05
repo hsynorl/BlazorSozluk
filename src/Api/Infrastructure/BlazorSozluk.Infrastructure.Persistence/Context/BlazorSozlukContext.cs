@@ -36,9 +36,9 @@ namespace BlazorSozluk.Infrastructure.Persistence.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (optionsBuilder.IsConfigured)
+            if (!optionsBuilder.IsConfigured)
             {
-                var constr = "Data Source=localhost; Initial Catalog=blazorsozluk, Persist Security Info=true;";
+                var constr = "Data Source=localhost;Initial Catalog=blazorsozluk; Persist Security Info=true;User ID=hsyn;Password=123";
                 optionsBuilder.UseSqlServer(constr, opt => {
 
                     opt.EnableRetryOnFailure();
