@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorSozluk.Api.Domain.Models
 {
-    public class EntryVote:BaseEntity
+    public class EntryVote : BaseEntity
     {
         public VoteType VoteType { get; set; }
 
@@ -15,5 +15,6 @@ namespace BlazorSozluk.Api.Domain.Models
         public Guid CreatedById { get; set; }
 
         public virtual Entry Entry { get; set; }
+
     }
 }
