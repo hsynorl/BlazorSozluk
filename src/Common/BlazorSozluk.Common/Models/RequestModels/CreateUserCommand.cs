@@ -13,7 +13,7 @@ namespace BlazorSozluk.Common.Models.RequestModels
 
         public string LastName { get; set; }
 
-        public string EmailAddress { get; set; }
+        public string EmailAddres { get; set; }
 
         public string UserName { get; set; }
 

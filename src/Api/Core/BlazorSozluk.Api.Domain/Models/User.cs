@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorSozluk.Api.Domain.Models
 {
-    public class User:BaseEntity
+    public class User : BaseEntity
     {
         public string FirstName { get; set; }
 
@@ -20,7 +20,7 @@ namespace BlazorSozluk.Api.Domain.Models
 
         public virtual ICollection<EntryCommentFavorite> EntryCommentFavorites { get; set; }
 
-        public virtual ICollection<EntryComment> EntryComments{ get; set; }
+        public virtual ICollection<EntryComment> EntryComments { get; set; }
         public virtual ICollection<EntryFavorite> EntryFavorites { get; set; }
 
     }

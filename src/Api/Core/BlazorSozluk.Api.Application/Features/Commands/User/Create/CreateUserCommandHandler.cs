@@ -27,7 +27,7 @@ namespace BlazorSozluk.Api.Application.Features.Commands.User
 
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var ecistsUser = await userRepository.GetSingleAsync(i => i.EmailAddres == request.EmailAddress);
+            var ecistsUser = await userRepository.GetSingleAsync(i => i.EmailAddres == request.EmailAddres);
             if (ecistsUser is not null)
             {
                 throw new DatabaseValidationExcepiton("Email already exists");
