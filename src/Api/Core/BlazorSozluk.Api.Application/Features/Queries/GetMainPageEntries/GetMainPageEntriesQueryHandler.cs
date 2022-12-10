@@ -22,6 +22,7 @@ namespace BlazorSozluk.Api.Application.Features.Queries.GetMainPageEntries
 
         public async Task<PagedViewModel<GetEntryDetailViewModel>> Handle(GetMainPageEntriesQuery request, CancellationToken cancellationToken)
         {
+
             var query = entryRepository.AsQueryable();
             query = query.Include(i => i.EntryFavorites)
                        .Include(i => i.CreatedBy)

@@ -11,7 +11,6 @@ namespace BlazorSozluk.Common
         public const string RabbitMQHost = "localhost";
         public const string DefaultExcanhgeType = "direct";
 
-
         public const string UserEmailExchangeName = "UserExchange";
         public const string UserEmailChangeQueueName = "UserEmailChangedQueue";
 
