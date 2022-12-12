@@ -11,6 +11,10 @@ namespace BlazorSozluk.Common.Models.Queries
     {
         public string SearchText { get; set; }
 
+        public SearchEntryQuery()
+        {
+
+        }
         public SearchEntryQuery(string searchText)
         {
             SearchText = searchText;

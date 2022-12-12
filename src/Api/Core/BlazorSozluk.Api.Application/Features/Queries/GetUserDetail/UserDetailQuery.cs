@@ -10,14 +10,18 @@ namespace BlazorSozluk.Api.Application.Features.Queries.GetUserDetail
 {
     public class UserDetailQuery : IRequest<UserDetailViewModel>
     {
+        private Guid id;
+
         public Guid UserId { get; set; }
 
         public string UserName { get; set; }
 
-        public UserDetailQuery(Guid userId, string userName)
+        public UserDetailQuery(Guid userId, string userName = null)
         {
             UserId = userId;
             UserName = userName;
         }
+
+
     }
 }

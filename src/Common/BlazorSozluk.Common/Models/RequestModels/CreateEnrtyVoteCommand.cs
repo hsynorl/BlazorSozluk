@@ -15,5 +15,12 @@ namespace BlazorSozluk.Common.Models.RequestModels
 
         public Guid CreatedBy { get; set; }
         public VoteType VoteType { get; set; }
+
+        public CreateEnrtyVoteCommand(Guid entryId, Guid createdBy, VoteType voteType)
+        {
+            EntryId = entryId;
+            CreatedBy = createdBy;
+            VoteType = voteType;
+        }
     }
 }
