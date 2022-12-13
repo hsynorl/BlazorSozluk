@@ -30,8 +30,8 @@ namespace BlazorSozluk.Api.WebApi.Controllers
             return Ok(query);
         }
 
-        [HttpGet("{id}")]
-        [Route("getById")]
+        [HttpGet("getById/{id}")]// Routeun 2. insiyatif kullanımı
+        
         public async Task<IActionResult> GetById(Guid id)
         {
             var result = await _mediator.Send(new GetEntryDetailQuery(id, UserId));
@@ -46,6 +46,7 @@ namespace BlazorSozluk.Api.WebApi.Controllers
             var result = await _mediator.Send(new GetEntryCommentsQuery(id, UserId, page, pageSize));
             return Ok(result);
         }
+
         [HttpGet]
         [Route("UserEntries")]
         public async Task<IActionResult> GetUserEntries(Guid userId, int page, int pageSize, string userName)

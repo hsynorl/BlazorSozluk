@@ -35,18 +35,6 @@ namespace BlazorSozluk.Api.WebApi.Controllers
             return Ok(user);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand loginUserCommand)

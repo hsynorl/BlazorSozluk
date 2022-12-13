@@ -11,7 +11,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddHttpClient("WebApiClient", client =>
 {
-    client.BaseAddress = new Uri(builder.Configuration["applicationUrl"]);
+    client.BaseAddress = new Uri("http://localhost:7016");
 });
 builder.Services.AddScoped(sp =>
 {
