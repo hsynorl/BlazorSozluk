@@ -3,6 +3,7 @@ using BlazorSozluk.Common.Infrastructure.Exceptions;
 using BlazorSozluk.Common.Infrastructure.Results;
 using BlazorSozluk.Common.Models.Queries;
 using BlazorSozluk.Common.Models.RequestModels;
+using BlazorSozluk.WebApp.Common;
 using BlazorSozluk.WebApp.Infrastructure.Extensions;
 using BlazorSozluk.WebApp.Infrastructure.Services.Interfaces;
 using System.Net.Http.Json;
@@ -41,7 +42,7 @@ namespace BlazorSozluk.WebApp.Infrastructure.Services
         public async Task<bool> Login(LoginUserCommand loginUserCommand)
         {
             string responseStr;
-            var httpResponse = await client.PostAsJsonAsync("/api/User/login", loginUserCommand);
+            var httpResponse = await client.PostAsJsonAsync($"{HostConf.host}/api/User/login", loginUserCommand);
 
             if (httpResponse != null && !httpResponse.IsSuccessStatusCode)
             {

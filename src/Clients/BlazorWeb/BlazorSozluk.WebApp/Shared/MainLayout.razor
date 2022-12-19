@@ -1,32 +1,173 @@
 ﻿@inherits LayoutComponentBase
+<div class="navbar fixed-top text-white">
 
-<div class="page">
-    <div class="sidebar">
-        <h5 class="text-white text-center sidebar-heading">@EntriesSubject </h5>
-        <a class="more-data" @onclick="@RefreshEntries">Refresh</a>
-        <ul class="list-group">
-            <EntriesComponent @ref="@entriesComponent" />
-   </ul></div>
+	<div class="logo">
+		<a href="/" class="bg-white">
+			<img height="29" src="data:image/png;base64,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" />
+		</a>
+	</div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+	<div class="search-box">
+		<div class="input-group">
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+			<div class="form-outline">
+				<input type="search" class="form-control small"
+					   @bind-value="@searchText"
+					   @bind-value:event="oninput"
+					   @onkeypress="@SearchKeyDown"
+					   @onfocusout="@OnSearchFocutOut"
+					   placeholder="Search in Sozluk" />
+
+			</div>
+			<button type="button" class="btn btn-sozluk btn-success"
+					@onclick="@Search"
+					@onfocus="@OnSearchFocutOut">
+				Ara
+			</button>
+		</div>
+
+
+
+		@if (showSearchResult)
+		{
+			<ul class="list-group">
+				@foreach (var searchItem in searchResult)
+				{
+					<li class="list-group-item">
+
+						<a onclick="(async()=>await GoEntry(searchItem.Id))">
+							@searchItem.Subject
+						</a>
+					</li>
+				}
+
+
+
+
+			</ul>
+		}
+	</div>
 </div>
 
-@code{
+@*<AuthorizeView>
+	<Authorized>
+		<div class="top-nav">
+			<input type="button" class="form-control btn-success btn-sozluk w-auto" value="Create Entry" onclick="@NavigateCreateEntryPage"/>
+			<input type="button" class="form-control btn-success btn-sozluk w-auto" value="ME" onclick="@NavigateMEPage"/>
+			<input type="button" class="form-control btn-success btn-sozluk w-auto" value="Logout" onclick="@NavigateLogoutPage" />
+		</div>
+	</Authorized>
 
-    public string EntriesSubject { get; set; } = "bugün";
-    private EntriesComponent entriesComponent;
-  
-    private async Task RefreshEntries()
-    {
-        await entriesComponent.RefreshList(); 
-    }
+
+
+	<NotAuthorized>*@
+<div class="top-nav">
+	<input type="button" class="form-control btn-success btn-sozluk w-auto" value="Login" onclick="@NavigateLoginPage" />
+</div>
+@*
+	</NotAuthorized>
+</AuthorizeView>*@
+
+<div class="sub-nav">
+
+	<a class="sub-nav-item active">bugün</a>
+	<a class="sub-nav-item ">gündem</a>
+	<a class="sub-nav-item ">debe</a>
+	<a class="sub-nav-item ">sorunsallar</a>
+	<a class="sub-nav-item ">takip</a>
+	<a class="sub-nav-item ">son</a>
+	<a class="sub-nav-item ">kenar</a>
+	<a class="sub-nav-item ">çaylaklar</a>
+</div>
+
+
+
+
+<div class="page">
+	<div class="sidebar">
+		<h5 class="text-white text-center sidebar-heading">@EntriesSubject</h5>
+		<a class="more-data" @onclick="@RefreshEntries"> refresh</a>
+		<ul class="list-group">
+			<EntriesComponent @ref="@entriesComponent" />
+		</ul>
+
+
+	</div>
+	<main>
+
+
+		<article class="content px-4">
+			@Body
+		</article>
+	</main>
+</div>
+
+@code {
+
+	public string EntriesSubject { get; set; } = "bugün";
+	private EntriesComponent entriesComponent;
+	private string searchText;
+	private bool showSearchResult;
+	private List<SearchEntryViewModel> searchResult = new List<SearchEntryViewModel>();
+
+	private async Task RefreshEntries()
+	{
+		await entriesComponent.RefreshList();
+	}
+	[Inject]
+	NavigationManager navigationManager { get; set; }
+
+	[Inject]
+	IEntryService entryService { get; set; }
+
+	private void NavigateMEPage()
+	{
+		navigationManager.NavigateTo("/me");
+	}
+	private void NavigateLoginPage()
+	{
+		navigationManager.NavigateTo("/me");
+	}
+	private void NavigateLogoutPage()
+	{
+		navigationManager.NavigateTo("/me");
+	}
+	private void NavigateCreateEntryPage()
+	{
+		navigationManager.NavigateTo("/me");
+	}
+	private async Task SearchKeyDown(KeyboardEventArgs e)
+	{
+		if (e.Code == "Enter" || e.Code == "NumpadEnter")
+		{
+			await Search();
+		}
+	}
+
+	private async Task OnSearchFocutOut()
+	{
+		await Task.Delay(100);
+		if (showSearchResult)
+		{
+			showSearchResult = true;
+		}
+	}
+
+	private async Task Search()
+	{
+		if (string.IsNullOrEmpty(searchText))
+		{
+			return;
+		}
+		searchResult = await entryService.SearchBySubject(searchText);
+		showSearchResult = true;
+		searchText = string.Empty;
+	}
+	private async Task GoEntry(Guid entryId)
+	{
+		await OnSearchFocutOut();
+	}
+
+
 
 }
