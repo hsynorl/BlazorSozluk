@@ -1,0 +1,87 @@
+﻿
+@page "/login"
+@using BlazorSozluk.Common.Models.RequestModels;
+@using BlazorSozluk.WebApp.Infrastructure.Services.Interfaces;
+
+<div class="login-form">
+
+	<EditForm Model="@loginUserCommand" OnValidSubmit="@LoginProcess">
+		<DataAnnotationsValidator/>
+		@if (errorText !=string.Empty)
+		{
+			<span class="text-danger">@errorText</span><br/>
+		}
+		<div class="form-group">
+			<input @bind-value="@loginUserCommand.EmailAddress" class="form-control" type="text" placeholder="Email"/>
+		</div><br/>
+
+		<div class="form-group">
+			<input @bind-value="@loginUserCommand.Password" class="form-control" type="password" placeholder="Password" />
+		</div><br />
+
+
+		<div class="form-group">
+			<button class="btn btn-success btn-sozluk">Login</button>
+		</div>
+
+
+	</EditForm>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@code {
+	[Inject]
+	IIdentityService identityService { get; set; }
+
+	[Inject]
+	NavigationManager navigationManager { get; set; }
+
+	private LoginUserCommand loginUserCommand=new();
+	private string errorText ="";
+	public async Task LoginProcess()
+	{
+
+		try
+		{
+			var res = await identityService.Login(loginUserCommand);
+			if (res)
+			{
+				navigationManager.NavigateTo("/");
+				errorText = "";
+			}
+			else
+			{
+				errorText = "Login failed with unknow reasons";
+			}
+		}
+		catch (Exception ex)
+		{
+			errorText = ex.Message;
+		}
+	}
+}
