@@ -35,7 +35,7 @@
 				{
 					<li class="list-group-item">
 
-						<a onclick="(async()=>await GoEntry(searchItem.Id))">
+						<a @onclick="(async()=>await GoEntry(searchItem.Id))">
 							@searchItem.Subject
 						</a>
 					</li>
@@ -149,7 +149,7 @@
 		await Task.Delay(100);
 		if (showSearchResult)
 		{
-			showSearchResult = true;
+			showSearchResult = false;
 		}
 	}
 
@@ -166,6 +166,7 @@
 	private async Task GoEntry(Guid entryId)
 	{
 		await OnSearchFocutOut();
+		navigationManager.NavigateTo($"/entry/{entryId}");
 	}
 
 
