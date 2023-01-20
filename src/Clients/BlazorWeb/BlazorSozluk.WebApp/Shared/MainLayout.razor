@@ -26,45 +26,36 @@
 			</button>
 		</div>
 
-
-
 		@if (showSearchResult)
 		{
 			<ul class="list-group">
 				@foreach (var searchItem in searchResult)
 				{
 					<li class="list-group-item">
-
 						<a @onclick="(async()=>await GoEntry(searchItem.Id))">
 							@searchItem.Subject
 						</a>
 					</li>
 				}
 
-
-
-
 			</ul>
 		}
 	</div>
 </div>
 
+
 <AuthorizeView>
 	<Authorized>
 		<div class="top-nav">
-			<input type="button" class="form-control btn-success btn-sozluk w-auto" value="Create Entry" @onclick="@NavigateCreateEntryPage"/>
-			<input type="button" class="form-control btn-success btn-sozluk w-auto" value="ME" @onclick="@NavigateMEPage"/>
+			<input type="button" class="form-control btn-success btn-sozluk w-auto" value="Create Entry" @onclick="@NavigateCreateEntryPage" />
+			<input type="button" class="form-control btn-success btn-sozluk w-auto" value="ME" @onclick="@NavigateMEPage" />
 			<input type="button" class="form-control btn-success btn-sozluk w-auto" value="Logout" @onclick="@NavigateLogoutPage" />
 		</div>
 	</Authorized>
-
-
-
 	<NotAuthorized>
-<div class="top-nav">
-	<input type="button" class="form-control btn-success btn-sozluk w-auto" value="Login" @onclick="@NavigateLoginPage" />
+		<div class="top-nav">
+	<input type="button" class="form-control btn-success btn-sozluk w-auto" value="Login" @onclick=@NavigateLoginPage />
 </div>
-
 	</NotAuthorized>
 </AuthorizeView>
 
@@ -81,8 +72,6 @@
 </div>
 
 
-
-
 <div class="page">
 	<div class="sidebar">
 		<h5 class="text-white text-center sidebar-heading">@EntriesSubject</h5>
@@ -90,12 +79,8 @@
 		<ul class="list-group">
 			<EntriesComponent @ref="@entriesComponent" />
 		</ul>
-
-
 	</div>
 	<main>
-
-
 		<article class="content px-4">
 			@Body
 		</article>
@@ -109,33 +94,40 @@
 	private string searchText;
 	private bool showSearchResult;
 	private List<SearchEntryViewModel> searchResult = new List<SearchEntryViewModel>();
+	
+	
+	@inject NavigationManager navigationManager
 
-	private async Task RefreshEntries()
-	{
-		await entriesComponent.RefreshList();
-	}
-	[Inject]
-	NavigationManager navigationManager { get; set; }
 
 	[Inject]
 	IEntryService entryService { get; set; }
+
+	private async Task RefreshEntries()
+	{
+
+		await entriesComponent.RefreshList();
+	}
 
 	private void NavigateMEPage()
 	{
 		navigationManager.NavigateTo("/me");
 	}
+
 	private void NavigateLoginPage()
 	{
 		navigationManager.NavigateTo("/login");
 	}
+
 	private void NavigateLogoutPage()
 	{
 		navigationManager.NavigateTo("/logout");
 	}
+
 	private void NavigateCreateEntryPage()
 	{
 		navigationManager.NavigateTo("/me");
 	}
+
 	private async Task SearchKeyDown(KeyboardEventArgs e)
 	{
 		if (e.Code == "Enter" || e.Code == "NumpadEnter")
@@ -153,6 +145,7 @@
 		}
 	}
 
+
 	private async Task Search()
 	{
 		if (string.IsNullOrEmpty(searchText))
@@ -163,6 +156,7 @@
 		showSearchResult = true;
 		searchText = string.Empty;
 	}
+
 	private async Task GoEntry(Guid entryId)
 	{
 		await OnSearchFocutOut();
